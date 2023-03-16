@@ -24,7 +24,7 @@ import com.sandboxia.spritesheet.SpriteSheetLoader;
 
 /**
  * this class handles the graphics of the game.
- * @author https://github.com/F12-Syntex
+ * @author https://github.com/F12-Syntex ( Saif )
  */
 public class Engine extends JPanel implements WindowListener{
 
@@ -32,7 +32,7 @@ public class Engine extends JPanel implements WindowListener{
 	private final Logger logger = Logger.getGlobal();
 	
 	private final InputController inputController;
-	private final ConcurrentLinkedQueue<GraphicEntity> entities = new ConcurrentLinkedQueue<>();
+	private final ConcurrentLinkedQueue<GraphicEntity> entities = new ConcurrentLinkedQueue<>(); // concurrent queue for thread safety, used to store all graphic entities, which are rendered on the screen.
 	private final SpriteSheetLoader spriteSheetLoader;
 	
 	private int fps;
@@ -42,10 +42,12 @@ public class Engine extends JPanel implements WindowListener{
 	private Thread processThread;
 	private ExecutorService threadHandler = Executors.newFixedThreadPool(4);
 
+
 	public Engine() {
 		this.inputController = new InputController(this);
 		this.spriteSheetLoader = new SpriteSheetLoader();
 		
+		//register all listeners
 		this.addKeyListener(this.inputController.getKeyboardInputEvent());
 		this.addMouseListener(this.inputController.getMouseInputListener());
 		this.addMouseWheelListener(this.inputController.getMouseInputListener());
@@ -55,10 +57,12 @@ public class Engine extends JPanel implements WindowListener{
 		this.requestFocus();
 		
 		
+		//load the sprite sheets in a separate thread
 		this.threadHandler.submit(() -> {
 			this.spriteSheetLoader.loadSpriteSheets();
 		});
 		
+		//load all the graphic entities dynamically
 		this.loadEntities();
 		
 		
@@ -169,18 +173,25 @@ public class Engine extends JPanel implements WindowListener{
 
 
 	public void loadEntities() {
-		Reflections reflections = new Reflections("com");
+		//search for all classes in the com package
+		Reflections reflections = new Reflections("com"); 
 
-		Set<Class<? extends GraphicEntity>> entityClazzes = reflections.getSubTypesOf(GraphicEntity.class);
+		//get all classes that extend GraphicEntity
+		Set<Class<? extends GraphicEntity>> entityClazzes = reflections.getSubTypesOf(GraphicEntity.class); 
 
-		for (Class<? extends GraphicEntity> clazz : entityClazzes) {
+		for (Class<? extends GraphicEntity> clazz : entityClazzes) { 
 		    try {
 		    	
+				//check if the class is annotated with AutoJoin, if it is, then create an instance of it and add it to the entities list.
 		    	if(clazz.isAnnotationPresent(AutoJoin.class)) {
 		    		
+					//get the constructor of the class
 			        Constructor<? extends GraphicEntity> constructor = clazz.getDeclaredConstructor();
+
+					//create an instance of the graphic entity from the constructor
 			        GraphicEntity entity = constructor.newInstance();
 			       
+					//add the entity to the entities list
 			        this.entities.add(entity);
 		    		
 		    	}
@@ -191,14 +202,24 @@ public class Engine extends JPanel implements WindowListener{
 		}
 	}
 
+	/**
+	 * @return the fps
+	 */
 	public int getFps() {
 		return fps;
 	}
 
-	public void setFps(int fps) {
+	/**
+	 * update the fps of the current game
+	 * @param fps the fps to set
+	 */
+	private void setFps(int fps) {
 		this.fps = fps;
 	}
 
+	/**
+	 * @return the spriteSheetLoader
+	 */
 	public SpriteSheetLoader getSpriteSheetLoader() {
 		return spriteSheetLoader;
 	}

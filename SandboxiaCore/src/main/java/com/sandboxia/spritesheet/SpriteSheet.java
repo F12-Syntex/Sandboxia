@@ -4,6 +4,13 @@ import java.awt.image.BufferedImage;
 
 import javax.annotation.Nonnull;
 
+/**
+ * SpriteSheet enum class. Provides all sprite sheets with their properties.
+ * 
+ * @author Saif.
+ * @version 1.0.4
+ * @since 1.0.0
+ */
 public enum SpriteSheet {
 	
 	SPRITESHEETS_SPRITES_32_RPG("spritesheets\\sprites-32\\rpg.png", new SpriteSheetProperties(true, 32)),
@@ -30,18 +37,58 @@ public enum SpriteSheet {
         this.sprite_sheet = sprite_sheet;
     }
 
+	/*
+	 * this method sets the image of the sprite sheet
+	 * @param image the image to set
+	 * @since 1.0.0
+	 * @version 1.0.0
+	 * @author Saif.
+	 * @see BufferedImage
+	 * @see SpriteSheet
+	 * @see SpriteSheetProperties
+	 */
     public void setImage(BufferedImage image) {
 		this.image = image;
 	}
 
+	/*
+	 * this method sets the directory of the sprite sheet
+	 * @param dir the directory to set
+	 * @since 1.0.0
+	 * @version 1.0.0
+	 * @author Saif.
+	 * @see BufferedImage
+	 * @see SpriteSheet
+	 * @see SpriteSheetProperties
+	 */
 	public String getDir() {
         return dir;
     }
 
+	/*
+	 * @returns the image of the sprite sheet
+	 * @param dir the directory to set
+	 * @since 1.0.0
+	 * @version 1.0.0
+	 * @author Saif.
+	 * @see BufferedImage
+	 * @see SpriteSheet
+	 * @see SpriteSheetProperties
+	 */
 	public BufferedImage getImage() {
 		return image;
 	}
 
+	/*
+	 * @returns the properties of the sprite sheet
+	 * @param dir the directory to set
+	 * @since 1.0.0
+	 * @version 1.0.0
+	 * @author Saif.
+	 * @see BufferedImage
+	 * @see SpriteSheet
+	 * @see SpriteSheetProperties
+	 */
 	public SpriteSheetProperties getProperties() {
 		synchronized(this.sprite_sheet) {
 			return sprite_sheet;

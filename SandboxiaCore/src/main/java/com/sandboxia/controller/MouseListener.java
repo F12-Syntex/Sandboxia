@@ -8,6 +8,13 @@ import javax.swing.event.MouseInputListener;
 
 import com.sandboxia.engine.Engine;
 
+/**
+ * Mouse listener class. provides all graphic entities with mouse input.
+ * 
+ * @author Saif.
+ * @version 1.0.4
+ * @since 1.0.0
+ */
 public class MouseListener extends GameInput implements MouseInputListener, MouseWheelListener {
 
 	public MouseListener(Engine engine) {

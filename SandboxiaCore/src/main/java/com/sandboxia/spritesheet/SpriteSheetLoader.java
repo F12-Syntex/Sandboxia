@@ -9,16 +9,29 @@ import javax.imageio.ImageIO;
 
 import com.sandboxia.datatypes.Node;
 
+/**
+ * This class is responsible for dynamically loading sprite sheets.
+ * 
+ * @author Saif.
+ * @version 1.0.0
+ * @since 1.0.0
+ * @TODO: load sprites from a folder rather than from the jar itself. 
+ */
 public class SpriteSheetLoader {
 	
 	private final File root;
 	private boolean loading;;
 	private final Logger logger = Logger.getLogger("spritesheet");
 	
+
 	public SpriteSheetLoader() {
+		//the root directory of the sprite sheets.
 		this.root = new File("target/classes/spritesheet"); 
 	}
 
+	/**
+	 * load the sprite sheets.
+	 */
 	public void loadSpriteSheets() {
 		//logger.setFilter((record) -> record.getLevel().intValue() > Level.FINE.intValue());
 		this.setLoading(true);
@@ -27,6 +40,9 @@ public class SpriteSheetLoader {
 		logger.info("Fully loaded");
 	}
 	
+	/**
+	 * A helper method for generating the code for the sprite sheets.
+	 */
 	private void dev() {
 		this.generateCode(this.root);
 	}
@@ -92,6 +108,9 @@ public class SpriteSheetLoader {
 			
 		}
 	
+	/**
+	 * A helper method for generating the code for the sprite sheets.
+	 */
 	public void generateCode(File root) {
 		
 		if(root == null) {
@@ -124,15 +143,24 @@ public class SpriteSheetLoader {
 		
 	}
 
+	/*
+	 * whither or not the sprite sheets are loading.
+	 */
 	public boolean isLoading() {
 		return loading;
 	}
 
+	/*
+	 * set the loading state of the sprite sheets.
+	 */
 	public void setLoading(boolean loading) {
 		this.loading = loading;
 	}
 	
 	
+	/**
+	 * generate the enum for all the sprite sheets stored in the res folder.
+	 */
 	public static void main(String[] args) {
 		new SpriteSheetLoader().dev();
 	}

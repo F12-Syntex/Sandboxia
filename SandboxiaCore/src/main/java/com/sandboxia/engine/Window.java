@@ -10,13 +10,17 @@ import com.sandboxia.configuration.Configuration;
 
 /**
  * this class handles the actual window of the game
- * @author https://github.com/F12-Syntex
+ * @author https://github.com/F12-Syntex ( Saif )
  */
 public class Window implements ComponentListener{
 
 	private JFrame jFrame;
 	public static final Dimension DIMENSION = new Dimension(810, 825);
 	
+	/**
+	 * Constructor for Window.
+	 * @param engine The engine of the game.
+	 */
 	public Window(Engine engine) {
 		
 		this.jFrame = new JFrame(Configuration.NAME + " v" + Configuration.VERSION);
@@ -28,6 +32,10 @@ public class Window implements ComponentListener{
 
 	}
 
+	/**
+	 * 
+	 * @return the JFrame of the window
+	 */
 	public JFrame getjFrame() {
 		return jFrame;
 	}
@@ -40,8 +48,7 @@ public class Window implements ComponentListener{
 	}
 	
 	/**
-	 * 
-	 * @return the dimensions of the window
+	 * @return the dimensions of the current window
 	 */
 	public Dimension getDimensions() {
 		return this.jFrame.getSize();
@@ -53,21 +60,12 @@ public class Window implements ComponentListener{
 	}
 
 	@Override
-	public void componentMoved(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void componentMoved(ComponentEvent e) {}
 
 	@Override
-	public void componentShown(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void componentShown(ComponentEvent e) {}
 
 	@Override
-	public void componentHidden(ComponentEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void componentHidden(ComponentEvent e) {}
 	
 }

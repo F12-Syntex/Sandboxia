@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * marker annotation responsibile for marking event runnable methods
- * @author https://github.com/F12-Syntex
+ * @author https://github.com/F12-Syntex ( Saif )
  * @version 1.0.0
  */
 @Retention(RetentionPolicy.RUNTIME)

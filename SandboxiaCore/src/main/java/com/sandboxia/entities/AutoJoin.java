@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * marker annotation responsibile for marking entities who are to be dynamically rendered
- * @author https://github.com/F12-Syntex
+ * @author https://github.com/F12-Syntex ( Saif )
  * @version 1.0.0
  */
 @Retention(RetentionPolicy.RUNTIME)

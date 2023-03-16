@@ -6,8 +6,13 @@ import com.sandboxia.entities.AutoJoin;
 import com.sandboxia.entities.GraphicEntity;
 
 @AutoJoin
-public class Sandbox extends GraphicEntity{
-
+/**
+ * This class is responsible for rendering the item selector on the screen.
+ * @author Saif
+ * @version 1.0.0
+ */
+public class ItemSelector extends GraphicEntity{
+	
 	@Override
 	public void render(Graphics g) {
 		
@@ -15,13 +20,12 @@ public class Sandbox extends GraphicEntity{
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public int getPriority() {
-		return 2;
+		return 1;
 	}
 	
 }

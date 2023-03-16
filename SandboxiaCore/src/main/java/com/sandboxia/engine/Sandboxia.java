@@ -6,7 +6,7 @@ import com.sandboxia.configuration.Configuration;
 
 /**
  * The singleton class responsible for acting as the global handler in this game.
- * @author https://github.com/F12-Syntex
+ * @author https://github.com/F12-Syntex ( Saif )
  */
 public final class Sandboxia {
 	
@@ -15,12 +15,18 @@ public final class Sandboxia {
 	private static final Sandboxia instance = new Sandboxia();
 	private final Logger logger = Logger.getGlobal();
 	
+	/**
+	 * Constructor for Sandboxia.
+	 */
 	private Sandboxia() {
 		this.engine = new Engine();
 		this.window = new Window(this.engine);
 		
 	}
 	
+	/**
+	 * This method starts the game.
+	 */
 	public void start(){
 
 		this.window.show();
@@ -33,14 +39,31 @@ public final class Sandboxia {
 		enchantedRealm.start();
 	}
 	
+	/**
+	 * Singleton pattern.
+	 * This method returns the instance of the game.
+	 * @return The instance of the game.
+	 */
 	public static Sandboxia getInstance() {
 		return Sandboxia.instance;
 	}
 	
+	public static void exit() {
+		System.exit(0);
+	}
+
+	/**
+	 * This method returns the window of the game.
+	 * @return The window of the game.
+	 */
 	public Window getWindow() {
 		return window;
 	}
 
+	/**
+	 * This method returns the engine of the game.
+	 * @return The engine of the game.
+	 */
 	public Engine getEngine() {
 		return engine;
 	}

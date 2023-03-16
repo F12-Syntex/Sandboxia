@@ -11,9 +11,20 @@ import javax.swing.event.MouseInputListener;
 
 public abstract class GraphicEntity implements MouseInputListener, KeyListener, MouseWheelListener{
 
+	/**
+	 * render the graphic entity on the screen
+	 * @param g, an instance of Graphics class from swing
+	 */
 	public abstract void render(Graphics g);
+
+	/**
+	 * tick any other tasks on a seperate thread
+	 */
 	public abstract void tick();
 	
+	/**
+	 * @return the priority of the entity, the higher the priority, the sooner it will be rendered
+	 */
 	public int getPriority() {
 		return 1;
 	}
